@@ -1,0 +1,35 @@
+<%- include('./partials/header')%>
+
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Todo App</a>
+    </div>
+  </nav>
+
+
+  <div class="container mt-5">
+    <form action="/add/todo" method="post" class="d-flex">
+            <input type="text" name="todo" class="form-control" placeholder="Enter a Task">
+
+            <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2">
+    </form>
+
+  <ul class="list-group my-5">
+    <% todo.forEach((todos)=>{ %>
+      <li class="list-group-item py-1 " id="valu1"><%=todos.todo %>
+        <a href="/delete/todos/<%=todos._id%>" class="btn btn-sm btn-danger">Delete</a></li>
+        
+      
+      <form action="/update/todo/<%=todos._id%>" method="post" class="d-flex ">
+        <input type="text" name="todo" class="form-control" placeholder="data to replace">
+        <input type="submit" value="Edit Task" class="btn btn-md btn-primary mx-2">
+      </form>
+
+      <form action="/completed/<%=todos._id%>" method="post" class="mb-4">
+        <input type="submit" value="IsCompleted" class="btn btn-sm btn-primary" >
+      </form>
+    <% }) %>
+
+  </ul>
+  </div>
+<% include('./partials/footer')%>
